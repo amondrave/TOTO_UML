@@ -1,0 +1,64 @@
+<%- include ('partials/header')%>
+
+<div class="container">
+    <table class="table table-hover table-bordered"">
+      <h2>Estadisticas</h2>
+      <thead class=" thead-dark">
+        <tr>
+            <th scope="col">Tipo de dato</th>
+            <th scope="col">Cantidad</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% if(tipos) {%>
+            <%tipos.map(item => {%>
+            <tr>
+                <td><input type="text" name="dato" value="<%=item.dato%>" placeholder="<%=item.dato%>"></td>
+                <td><input type="text" name="cantidad" value="<%=item.cantidad%>" placeholder="<%=item.cantidad%>"></td>
+            </tr>
+            <%})%>
+            <%}%>
+      </tbody>
+    </table>
+  </div>
+
+  <script type="text/javascript">
+
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      // Create and populate the data table.
+      var datos = Array.from(document.getElementsByName("dato"),x=>x.value);
+      var cantitdad = Array.from(document.getElementsByName("cantidad"),x=>Number(x.value));
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'datos');
+      data.addColumn('number', 'total');
+
+      for (i = 0; i < datos.length; i++)
+        data.addRow([datos[i], cantitdad[i]]);
+      
+        var options = {
+            title: 'Tipos de datos',
+            is3D: true,
+        };
+        
+      // Create and draw the visualization.
+      new google.visualization.PieChart(document.getElementById('piechart')).
+        draw(data, options);
+        
+      new google.visualization.BarChart(document.getElementById('BarChart')).
+        draw(data, options);
+    }
+  </script>
+
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-6" id="piechart" style="width: 900px; height: 500px;"></div>
+        <div class="col-sm-6" id="BarChart" style="width: 900px; height: 500px;"></div>
+      </div>
+  </div>
+
+
+<%- include ('partials/footer')%>

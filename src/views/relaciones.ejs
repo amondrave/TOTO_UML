@@ -1,0 +1,90 @@
+<%- include ('partials/header')%>
+
+<br>
+
+<div class="container">
+
+  <form class="form-inline">
+
+    <div class="form-group mb-2">
+      <label for="label" class="sr-only"></label>
+      <input type="text" readonly class="form-control-plaintext" id="label" value="Diagramas">
+    </div>
+
+    <select class="form-group form-control mx-sm-3 mb-2" onchange="location = this.value;">
+      <option value="/diagrama">Revisar Diagramas</option>
+      <% if(diagramas) {%>
+      <%diagramas.map(item => {%>
+      <option value="<%=item.id%>"><%=item.nombre%></option>
+      <%})%>
+      <%}%>
+  </select>
+
+</form>
+
+    <form class="form-inline" action="/addRelacion" method="POST">
+        <div class="form-group mb-2">
+          <label for="label1" class="sr-only"></label>
+          <input type="text" readonly class="form-control-plaintext" id="label1" value="Crea una relacion">
+        </div>
+
+        <select class="form-group form-control mx-sm-3 mb-2" name="clase_origen">
+          <% if(origen) {%>
+            <%origen.map(item => {%>
+                <option value="<%=item.id%>"><%=item.nombre%></option>
+            <%})%>
+          <%}%>
+        </select>
+
+        <select class="form-group form-control mx-sm-3 mb-2" name="clase_destino">
+          <% if(destino) {%>
+            <%destino.map(item => {%>
+                <option value="<%=item.id%>"><%=item.nombre%></option>
+            <%})%>
+          <%}%>
+        </select>
+        
+        <select class="form-group form-control mx-sm-3 mb-2" name="id_multiplicidad">
+          <% if(mult) {%>
+            <%mult.map(item => {%>
+                <option value="<%=item.id%>"><%=item.desc%></option>
+            <%})%>
+          <%}%>
+        </select>
+
+        <button type="submit" class="btn btn-primary mb-2 "><span class="material-icons">addchart</span></button>
+      </form>
+</div>
+
+<div class="container">
+  <table class="table table-hover table-bordered"">
+    <h2>Relaciones</h2>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Origen</th>
+        <th scope="col">Destino</th>
+        <th scope="col">Multiplicidad</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if(relacion) {%>
+        <%relacion.map(item => {%>
+            <tr>
+                <td><%=item.id%></td>
+                <td><%=item.origen%></td>
+                <td><%=item.destino%></td>
+                <td><%=item.desc%></td>
+                <td>
+                  <a href="/deleteRelacion/<%=item.id%>" class="btn btn-danger">Delete</a>
+                  <!-- <a href="/updateRelacion/<%=item.id%>" class="btn btn-warning ml-1">Edit</a> -->
+                </td>
+            </tr>
+        <%})%>
+    <%}%>
+    </tbody>
+  </table>
+</div>
+
+<%- include ('partials/footer')%>

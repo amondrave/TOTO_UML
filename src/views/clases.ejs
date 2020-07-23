@@ -1,0 +1,65 @@
+<%- include ('partials/header')%>
+
+<br>
+
+<div class="container">
+    <form class="form-inline" action="/addClase" method="POST">
+
+        <div class="form-group mb-2">
+          <label for="label1" class="sr-only"></label>
+          <input type="text" readonly class="form-control-plaintext" id="label1" value="Crea una clase">
+        </div>
+
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="label1" class="sr-only"></label>
+          <input type="text" class="form-control" id="label2" name="nombre"placeholder="Nombre">
+        </div>
+
+        <div class="form-group mb-2">
+          <select class="form-control" name="id_diagrama">
+            <% if(diagramas) {%>
+              <%diagramas.map(item => {%>
+                  <option value="<%=item.id%>"><%=item.nombre%></option>
+              <%})%>
+            <%}%>
+          </select>
+        </div>
+  
+        <div class="form-group mb-2">
+          <button type="submit" class="btn btn-primary ml-3"><span class="material-icons">addchart</span></button>
+        </div>
+
+      </form>
+</div>
+
+<div class="container">
+  <table class="table table-hover table-bordered"">
+    <h2>Clases</h2>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Diagrama</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if(clases) {%>
+        <%clases.map(item => {%>
+            <tr>
+                <td><%=item.id%></td>
+                <td><%=item.nombre%></td>
+                <td><%=item.diagrama%></td>
+                <td>
+                  <a href="/deleteClase/<%=item.id%>" class="btn btn-danger">Delete</a>
+                  <a href="/updateClase/<%=item.id%>" class="btn btn-warning ml-1">Edit</a>
+                  <a href="/atributo/<%=item.id%>" class="btn btn-success ml-1">Diseñar</a>
+                </td>
+            </tr>
+        <%})%>
+    <%}%>
+    </tbody>
+  </table>
+</div>
+
+<%- include ('partials/footer')%>
