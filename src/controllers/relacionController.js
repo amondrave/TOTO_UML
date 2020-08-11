@@ -56,10 +56,9 @@ controller.save = (req, res) => {
     req.getConnection((err, conn) => {
         conn.query('INSERT INTO relaciones set ?', [data], (err, row) => {
             if (err) throw err;
-
-            res.redirect(`/relacion/0`);
         });
     });
+    res.redirect(`/relacion/0`);
 };
 
 controller.delete = (req,res) =>{
@@ -67,9 +66,9 @@ controller.delete = (req,res) =>{
     req.getConnection((err,conn)=>{
         conn.query( `DELETE FROM relaciones WHERE id = ${id}`,(err, sql)=>{
             if (err) throw err;
-            res.redirect(`/relacion/0`);
         });
     })
+    res.redirect(`/relacion/0`);
 };
 
 module.exports = controller;

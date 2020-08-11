@@ -13,15 +13,16 @@
             <% if(tipos) {%>
             <%tipos.map(item => {%>
             <tr>
-                <td><input type="text" name="dato" value="<%=item.dato%>" placeholder="<%=item.dato%>"></td>
-                <td><input type="text" name="cantidad" value="<%=item.cantidad%>" placeholder="<%=item.cantidad%>"></td>
+                <td><input type="text" name="dato" value="<%=item.dato%>" style="border: 0;" readonly></td>
+                <td><input type="text" name="cantidad" value="<%=item.cantidad%>" style="border: 0;" readonly></td>
             </tr>
             <%})%>
             <%}%>
+            
       </tbody>
     </table>
   </div>
-
+<!-- Grafica -->
   <script type="text/javascript">
 
     google.charts.load('current', { 'packages': ['corechart'] });
@@ -59,6 +60,6 @@
         <div class="col-sm-6" id="BarChart" style="width: 900px; height: 500px;"></div>
       </div>
   </div>
-
+<!-- Grafica -->
 
 <%- include ('partials/footer')%>

@@ -27,9 +27,9 @@ controller.save = (req, res) => {
     req.getConnection((err, conn) => {
         conn.query('INSERT INTO clase set ?', [data], (err, row) => {
             if (err) throw err;
-            res.redirect(`/clase/${id}`);
         });
     });
+    res.redirect(`/clase/${id}`);
 };
 
 controller.delete = (req,res) =>{
@@ -41,9 +41,9 @@ controller.delete = (req,res) =>{
         ];
         conn.query(`${querys[0]};${querys[1]};`,(err, sql)=>{
             if (err) throw err;
-            res.redirect(`/clase/${sql[0][0].id_diagrama}`);
         });
     })
+    res.redirect(`/clase/${sql[0][0].id_diagrama}`);
 };
 
 controller.update = (req, res) => {
@@ -74,13 +74,12 @@ controller.edit = (req, res) => {
           (err, rows) => {
             if (err) {
               res.json(err);
-            } else {
-              res.redirect(`/clase/${rows[1][0].id_diagrama}`);
             }
           }
         );
       }
     });
+    res.redirect(`/clase/${rows[1][0].id_diagrama}`);
   }
 
 module.exports = controller;

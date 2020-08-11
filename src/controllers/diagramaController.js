@@ -19,9 +19,9 @@ controller.save = (req,res)=>{
         conn.query('INSERT INTO diagrama set ?',[data],(err,row)=>{
             if (err) throw err;
             console.log(row);
-            res.redirect('/diagrama');
         });
     });
+    res.redirect('/diagrama');
 };
 
 controller.delete = (req,res) =>{
@@ -29,9 +29,9 @@ controller.delete = (req,res) =>{
     req.getConnection((err,conn)=>{
         conn.query("DELETE FROM diagrama WHERE id = ?",[id],(err, row)=>{
             if (err) throw err;
-            res.redirect('/diagrama');
         });
     })
+    res.redirect('/diagrama');
 };
 
 controller.update = (req, res) => {
@@ -56,9 +56,9 @@ controller.edit = (req, res) => {
             if (err) {
                 res.json(err)
             }
-            res.redirect('/diagrama');
         });
     });
+    res.redirect('/diagrama');
 };
 
 module.exports = controller;

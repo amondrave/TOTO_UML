@@ -31,9 +31,9 @@ controller.save = (req, res) => {
     req.getConnection((err, conn) => {
         conn.query('INSERT INTO atributo set ?', [data], (err, row) => {
             if (err) throw err;
-            res.redirect(`/atributo/${id}`);
         });
     });
+    res.redirect(`/atributo/${id}`);
 };
 
 controller.delete = (req,res) =>{
@@ -45,9 +45,9 @@ controller.delete = (req,res) =>{
         ];
         conn.query(`${querys[0]};${querys[1]};`,(err, sql)=>{
             if (err) throw err;
-            res.redirect(`/atributo/${sql[0][0].id_clase}`);
         });
     })
+    res.redirect(`/atributo/${sql[0][0].id_clase}`);
 };
 
 controller.update = (req, res) => {
@@ -82,13 +82,12 @@ controller.edit = (req, res) => {
           (err, rows) => {
             if (err) {
               res.json(err);
-            } else {
-              res.redirect(`/atributo/${rows[1][0].id_clase}`);
             }
           }
         );
       }
     });
+    res.redirect(`/atributo/${rows[1][0].id_clase}`);
   }
 
 module.exports = controller;
