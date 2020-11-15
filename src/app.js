@@ -23,9 +23,9 @@ app.set('views',path.join(__dirname, 'views'));
 //middlewars
 app.use(morgan('dev'));
 app.use(myConnection(mysql,{
-    host:'ejemplomvdb.mysql.database.azure.com',
-    user: 'azuredb@ejemplomvdb',
-    password: 'toto0416.',
+    host:'35.231.184.22',
+    user: 'root',
+    password: 'admin',
     port: 3306,
     database: 'diagramasclases',
     multipleStatements: true
