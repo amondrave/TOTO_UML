@@ -23,7 +23,7 @@ app.set('views',path.join(__dirname, 'views'));
 //middlewars
 app.use(morgan('dev'));
 app.use(myConnection(mysql,{
-    host:'54.237.10.115',
+    host:'54.84.110.220',
     user: 'angel',
     password: 'angel',
     port: 3306,
