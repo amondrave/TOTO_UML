@@ -23,9 +23,9 @@ app.set('views',path.join(__dirname, 'views'));
 //middlewars
 app.use(morgan('dev'));
 app.use(myConnection(mysql,{
-    host:'35.231.184.22',
-    user: 'root',
-    password: 'admin',
+    host:'54.237.10.115',
+    user: 'angel',
+    password: 'angel',
     port: 3306,
     database: 'diagramasclases',
     multipleStatements: true
